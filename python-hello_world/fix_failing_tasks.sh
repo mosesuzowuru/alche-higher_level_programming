@@ -1,4 +1,3 @@
-cd python-hello_world && cat > fix_failing_tasks.sh << 'EOF'
 #!/bin/bash
 
 echo " Fixing failing Python tasks..."
@@ -59,5 +58,3 @@ echo " All fixes applied successfully!"
 echo " 3-print_number.py now uses :d format specifier (will raise ValueError for non-integers)"
 echo " 6-concat.py now outputs 'Welcome to Battery Street!'"
 echo " 8-concat_edges.py now outputs 'object-oriented programming with Python' and is PEP8 compliant"
-EOF
-chmod +x fix_failing_tasks.sh && ./fix_failing_tasks.sh
