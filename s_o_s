@@ -1,0 +1,472 @@
+#!/bin/bash
+
+# Setup script for Python data structures tasks
+echo "Creating Python data structures project structure..."
+
+# Create directory
+mkdir -p python-data_structures
+cd python-data_structures
+
+# Task 0: Print a list of integers
+cat > 0-print_list_integer.py << 'EOF'
+#!/usr/bin/python3
+def print_list_integer(my_list=[]):
+    for integer in my_list:
+        print("{}".format(integer))
+EOF
+
+# Task 1: Secure access to an element in a list
+cat > 1-element_at.py << 'EOF'
+#!/usr/bin/python3
+def element_at(my_list, idx):
+    if idx < 0 or idx >= len(my_list):
+        return None
+    return my_list[idx]
+EOF
+
+# Task 2: Replace element
+cat > 2-replace_in_list.py << 'EOF'
+#!/usr/bin/python3
+def replace_in_list(my_list, idx, element):
+    if idx < 0 or idx >= len(my_list):
+        return my_list
+    my_list[idx] = element
+    return my_list
+EOF
+
+# Task 3: Print a list of integers... in reverse!
+cat > 3-print_reversed_list_integer.py << 'EOF'
+#!/usr/bin/python3
+def print_reversed_list_integer(my_list=[]):
+    if my_list:
+        for i in range(len(my_list) - 1, -1, -1):
+            print("{}".format(my_list[i]))
+EOF
+
+# Task 4: Replace in a copy
+cat > 4-new_in_list.py << 'EOF'
+#!/usr/bin/python3
+def new_in_list(my_list, idx, element):
+    if idx < 0 or idx >= len(my_list):
+        return my_list.copy()
+    new_list = my_list.copy()
+    new_list[idx] = element
+    return new_list
+EOF
+
+# Task 5: Can you C me now?
+cat > 5-no_c.py << 'EOF'
+#!/usr/bin/python3
+def no_c(my_string):
+    new_string = ""
+    for char in my_string:
+        if char != 'c' and char != 'C':
+            new_string += char
+    return new_string
+EOF
+
+# Task 6: Lists of lists = Matrix
+cat > 6-print_matrix_integer.py << 'EOF'
+#!/usr/bin/python3
+def print_matrix_integer(matrix=[[]]):
+    for row in matrix:
+        for i, integer in enumerate(row):
+            if i == len(row) - 1:
+                print("{}".format(integer))
+            else:
+                print("{}".format(integer), end=" ")
+        if not row:
+            print()
+EOF
+
+# Task 7: Tuples addition
+cat > 7-add_tuple.py << 'EOF'
+#!/usr/bin/python3
+def add_tuple(tuple_a=(), tuple_b=()):
+    # Handle tuple_a
+    if len(tuple_a) == 0:
+        a1, a2 = 0, 0
+    elif len(tuple_a) == 1:
+        a1, a2 = tuple_a[0], 0
+    else:
+        a1, a2 = tuple_a[0], tuple_a[1]
+    
+    # Handle tuple_b
+    if len(tuple_b) == 0:
+        b1, b2 = 0, 0
+    elif len(tuple_b) == 1:
+        b1, b2 = tuple_b[0], 0
+    else:
+        b1, b2 = tuple_b[0], tuple_b[1]
+    
+    return (a1 + b1, a2 + b2)
+EOF
+
+# Task 8: More returns!
+cat > 8-multiple_returns.py << 'EOF'
+#!/usr/bin/python3
+def multiple_returns(sentence):
+    length = len(sentence)
+    if length == 0:
+        first = None
+    else:
+        first = sentence[0]
+    return (length, first)
+EOF
+
+# Task 9: Find the max
+cat > 9-max_integer.py << 'EOF'
+#!/usr/bin/python3
+def max_integer(my_list=[]):
+    if not my_list:
+        return None
+    
+    max_val = my_list[0]
+    for num in my_list:
+        if num > max_val:
+            max_val = num
+    return max_val
+EOF
+
+# Task 10: Only by 2
+cat > 10-divisible_by_2.py << 'EOF'
+#!/usr/bin/python3
+def divisible_by_2(my_list=[]):
+    result = []
+    for num in my_list:
+        result.append(num % 2 == 0)
+    return result
+EOF
+
+# Task 11: Delete at
+cat > 11-delete_at.py << 'EOF'
+#!/usr/bin/python3
+def delete_at(my_list=[], idx=0):
+    if idx < 0 or idx >= len(my_list):
+        return my_list
+    del my_list[idx]
+    return my_list
+EOF
+
+# Task 12: Switch
+cat > 12-switch.py << 'EOF'
+#!/usr/bin/python3
+a = 89
+b = 10
+a, b = b, a
+print("a={} - b={}".format(a, b))
+EOF
+
+# Create test files for demonstration
+cat > 0-main.py << 'EOF'
+#!/usr/bin/python3
+print_list_integer = __import__('0-print_list_integer').print_list_integer
+
+my_list = [1, 2, 3, 4, 5]
+print_list_integer(my_list)
+EOF
+
+cat > 1-main.py << 'EOF'
+#!/usr/bin/python3
+element_at = __import__('1-element_at').element_at
+
+my_list = [1, 2, 3, 4, 5]
+idx = 3
+print("Element at index {:d} is {}".format(idx, element_at(my_list, idx)))
+EOF
+
+cat > 2-main.py << 'EOF'
+#!/usr/bin/python3
+replace_in_list = __import__('2-replace_in_list').replace_in_list
+
+my_list = [1, 2, 3, 4, 5]
+idx = 3
+new_element = 9
+new_list = replace_in_list(my_list, idx, new_element)
+
+print(new_list)
+print(my_list)
+EOF
+
+cat > 5-main.py << 'EOF'
+#!/usr/bin/env python3
+no_c = __import__('5-no_c').no_c
+
+print(no_c("Best School"))
+print(no_c("Chicago"))
+print(no_c("C is fun!"))
+EOF
+
+# Create README.md
+cat > README.md << 'EOF'
+# Python - Data Structures: Lists, Tuples
+
+This directory contains Python programming exercises focusing on data structures, primarily lists and tuples.
+
+## Learning Objectives
+
+At the end of this project, you should be able to explain:
+- What are lists and how to use them
+- What are the differences and similarities between strings and lists
+- What are the most common methods of lists and how to use them
+- How to use lists as stacks and queues
+- What are list comprehensions and how to use them
+- What are tuples and how to use them
+- When to use tuples versus lists
+- What is a sequence
+- What is tuple packing
+- What is sequence unpacking
+- What is the del statement and how to use it
+
+## Requirements
+
+### Python Scripts
+- Allowed editors: vi, vim, emacs
+- All files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)
+- All files should end with a new line
+- The first line of all files should be exactly `#!/usr/bin/python3`
+- A README.md file, at the root of the folder of the project, is mandatory
+- Your code should use pycodestyle (version 2.8.*)
+- All files must be executable
+- The length of your files will be tested using `wc`
+
+## Tasks
+
+### 0. Print a list of integers
+**File:** `0-print_list_integer.py`
+
+Write a function that prints all integers of a list.
+
+**Prototype:** `def print_list_integer(my_list=[]):`
+- Format: one integer per line
+- You are not allowed to import any module
+- You can assume that the list only contains integers
+- You are not allowed to cast integers into strings
+- You have to use str.format() to print integers
+
+### 1. Secure access to an element in a list
+**File:** `1-element_at.py`
+
+Write a function that retrieves an element from a list like in C.
+
+**Prototype:** `def element_at(my_list, idx):`
+- If idx is negative, the function should return None
+- If idx is out of range, the function should return None
+- You are not allowed to import any module
+- You are not allowed to use try/except
+
+### 2. Replace element
+**File:** `2-replace_in_list.py`
+
+Write a function that replaces an element of a list at a specific position.
+
+**Prototype:** `def replace_in_list(my_list, idx, element):`
+- If idx is negative, the function should not modify anything, and returns the original list
+- If idx is out of range, the function should not modify anything, and returns the original list
+- You are not allowed to import any module
+- You are not allowed to use try/except
+
+### 3. Print a list of integers... in reverse!
+**File:** `3-print_reversed_list_integer.py`
+
+Write a function that prints all integers of a list, in reverse order.
+
+**Prototype:** `def print_reversed_list_integer(my_list=[]):`
+- Format: one integer per line
+- You are not allowed to import any module
+- You can assume that the list only contains integers
+- You are not allowed to cast integers into strings
+- You have to use str.format() to print integers
+
+### 4. Replace in a copy
+**File:** `4-new_in_list.py`
+
+Write a function that replaces an element in a list at a specific position without modifying the original list.
+
+**Prototype:** `def new_in_list(my_list, idx, element):`
+- If idx is negative, the function should return a copy of the original list
+- If idx is out of range, the function should return a copy of the original list
+- You are not allowed to import any module
+- You are not allowed to use try/except
+
+### 5. Can you C me now?
+**File:** `5-no_c.py`
+
+Write a function that removes all characters c and C from a string.
+
+**Prototype:** `def no_c(my_string):`
+- The function should return the new string
+- You are not allowed to import any module
+- You are not allowed to use str.replace()
+
+### 6. Lists of lists = Matrix
+**File:** `6-print_matrix_integer.py`
+
+Write a function that prints a matrix of integers.
+
+**Prototype:** `def print_matrix_integer(matrix=[[]])):`
+- Format: see example
+- You are not allowed to import any module
+- You can assume that the list only contains integers
+- You are not allowed to cast integers into strings
+- You have to use str.format() to print integers
+
+### 7. Tuples addition
+**File:** `7-add_tuple.py`
+
+Write a function that adds 2 tuples.
+
+**Prototype:** `def add_tuple(tuple_a=(), tuple_b=()):`
+- Returns a tuple with 2 integers
+- The first element should be the addition of the first element of each argument
+- The second element should be the addition of the second element of each argument
+- You are not allowed to import any module
+- You can assume that the two tuples will only contain integers
+- If a tuple is smaller than 2, use the value 0 for each missing integer
+- If a tuple is bigger than 2, use only the first 2 integers
+
+### 8. More returns!
+**File:** `8-multiple_returns.py`
+
+Write a function that returns a tuple with the length of a string and its first character.
+
+**Prototype:** `def multiple_returns(sentence):`
+- If the sentence is empty, the first character should be equal to None
+- You are not allowed to import any module
+
+### 9. Find the max
+**File:** `9-max_integer.py`
+
+Write a function that finds the biggest integer of a list.
+
+**Prototype:** `def max_integer(my_list=[]):`
+- If the list is empty, return None
+- You can assume that the list only contains integers
+- You are not allowed to import any module
+- You are not allowed to use the builtin max()
+
+### 10. Only by 2
+**File:** `10-divisible_by_2.py`
+
+Write a function that finds all multiples of 2 in a list.
+
+**Prototype:** `def divisible_by_2(my_list=[]):`
+- Return a new list with True or False, depending on whether the integer at the same position in the original list is a multiple of 2
+- The new list should have the same size as the original list
+- You are not allowed to import any module
+
+### 11. Delete at
+**File:** `11-delete_at.py`
+
+Write a function that deletes the item at a specific position in a list.
+
+**Prototype:** `def delete_at(my_list=[], idx=0):`
+- If idx is negative or out of range, nothing change (returns the same list)
+- You are not allowed to use pop()
+- You are not allowed to import any module
+
+### 12. Switch
+**File:** `12-switch.py`
+
+Complete the source code in order to switch value of a and b.
+
+- Your code should be inserted where the comment is (line 4)
+- Your program should be exactly 5 lines long
+
+## How to Run
+
+### Testing individual functions
+```bash
+./0-main.py
+./1-main.py
+./2-main.py
+./5-main.py
+```
+
+### Testing the switch program
+```bash
+./12-switch.py
+```
+
+## Examples
+
+### Task 0 - Print list integers
+```python
+my_list = [1, 2, 3, 4, 5]
+print_list_integer(my_list)
+# Output:
+# 1
+# 2
+# 3
+# 4
+# 5
+```
+
+### Task 7 - Tuple addition
+```python
+tuple_a = (1, 89)
+tuple_b = (88, 11)
+new_tuple = add_tuple(tuple_a, tuple_b)
+print(new_tuple)  # (89, 100)
+```
+
+### Task 12 - Switch values
+```bash
+./12-switch.py
+# Output: a=10 - b=89
+```
+
+## Repository Structure
+
+```
+alche-higher_level_programming/
+└── python-data_structures/
+    ├── README.md
+    ├── 0-print_list_integer.py
+    ├── 1-element_at.py
+    ├── 2-replace_in_list.py
+    ├── 3-print_reversed_list_integer.py
+    ├── 4-new_in_list.py
+    ├── 5-no_c.py
+    ├── 6-print_matrix_integer.py
+    ├── 7-add_tuple.py
+    ├── 8-multiple_returns.py
+    ├── 9-max_integer.py
+    ├── 10-divisible_by_2.py
+    ├── 11-delete_at.py
+    ├── 12-switch.py
+    └── [test files]
+```
+
+## Author
+
+This project is part of the ALX Higher Level Programming curriculum.
+EOF
+
+# Make all Python files executable
+echo "Setting executable permissions..."
+chmod +x *.py
+
+echo "All files created successfully!"
+echo "Project structure:"
+ls -la
+
+echo ""
+echo " Quick tests:"
+echo "Testing 0-print_list_integer.py:"
+python3 0-main.py
+
+echo ""
+echo "Testing 1-element_at.py:"
+python3 1-main.py
+
+echo ""
+echo "Testing 5-no_c.py:"
+python3 5-main.py
+
+echo ""
+echo "Testing 12-switch.py:"
+python3 12-switch.py
+
+echo ""
+echo "🎉 Setup complete! All tasks are ready to submit."
