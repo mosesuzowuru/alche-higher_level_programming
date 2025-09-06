@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """Module that defines a Rectangle class"""
-
-
 class Rectangle:
     """A class that defines a rectangle by width and height"""
 
@@ -10,7 +8,6 @@ class Rectangle:
 
     def __init__(self, width=0, height=0):
         """Initialize a rectangle with width and height
-
         Args:
             width: The width of the rectangle (default: 0)
             height: The height of the rectangle (default: 0)
@@ -22,7 +19,6 @@ class Rectangle:
     @property
     def width(self):
         """Get the width of the rectangle
-
         Returns:
             The width of the rectangle
         """
@@ -31,7 +27,6 @@ class Rectangle:
     @width.setter
     def width(self, value):
         """Set the width of the rectangle
-
         Args:
             value: The new width value
 
@@ -48,7 +43,6 @@ class Rectangle:
     @property
     def height(self):
         """Get the height of the rectangle
-
         Returns:
             The height of the rectangle
         """
@@ -57,7 +51,6 @@ class Rectangle:
     @height.setter
     def height(self, value):
         """Set the height of the rectangle
-
         Args:
             value: The new height value
 
@@ -73,7 +66,6 @@ class Rectangle:
 
     def area(self):
         """Calculate and return the area of the rectangle
-
         Returns:
             The area of the rectangle (width * height)
         """
@@ -81,7 +73,6 @@ class Rectangle:
 
     def perimeter(self):
         """Calculate and return the perimeter of the rectangle
-
         Returns:
             The perimeter of the rectangle, 0 if width or height is 0
         """
@@ -91,7 +82,6 @@ class Rectangle:
 
     def __str__(self):
         """Return string representation of the rectangle
-
         Returns:
             String representation using # characters
         """
@@ -101,7 +91,6 @@ class Rectangle:
 
     def __repr__(self):
         """Return string representation to recreate the instance
-
         Returns:
             String that can be used with eval() to create new instance
         """
@@ -115,14 +104,11 @@ class Rectangle:
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
         """Return the biggest rectangle based on area
-
         Args:
             rect_1: First rectangle to compare
             rect_2: Second rectangle to compare
-
         Returns:
             The rectangle with the bigger area, rect_1 if equal
-
         Raises:
             TypeError: If rect_1 or rect_2 is not an instance of Rectangle
         """
